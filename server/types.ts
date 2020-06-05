@@ -42,7 +42,7 @@ type Mutation {
   searchDeck(name: String!): [Decks!]
 
   addCard(front: String!, back: String!): Cards
-  deleteCard(id: ID!): Cards!
+  deleteCard(front: String!): Cards
   updateCard(id: ID!, front: ID, back: ID): Cards!
   searchCard(searchTerm: String!): [Cards!]
 }

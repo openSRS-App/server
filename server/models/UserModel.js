@@ -4,20 +4,19 @@ const Schema = mongoose.Schema;
 // Configure MongoDB server
 const myURI = 'mongodb+srv://opensrs:hgUDs9eFn5WB8oDr@cluster0-9tk0l.mongodb.net/opensrs?retryWrites=true&w=majority';
 
-
 mongoose.connect(myURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    dbName: 'openSRS' 
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  dbName: 'openSRS'
 })
-    .then(() => console.log('Connected to Mongo DB.')) 
-    .catch(err => console.log(err)); 
+  .then(() => console.log('Connected to Mongo DB.'))
+  .catch(err => console.log(err));
 
 // Card Schema
 // ## Creates list of flashcards that is nested within the deck schema
 // Relations in terms of nested object: User > Deck > Card
 
-const cardSchema = new Schema ({
+const cardSchema = new Schema({
   id: {
     type: Number,
     require: true
@@ -38,8 +37,8 @@ const cardSchema = new Schema ({
     type: Number,
     require: true
   }
-})     
-    
+})
+
 // Deck Schema
 // ## Creates a deck that is nested within the user schema
 // Relations in terms of nested object: User > Deck > Card
@@ -51,7 +50,7 @@ const deckSchema = new Schema({
   },
   cards: {
     type: cardSchema,
-    require: true    
+    require: true
   }
 });
 
@@ -61,27 +60,27 @@ const deckSchema = new Schema({
 
 const userSchema = new Schema({
   id: {
-        type: Number,
-        require: true
-      },
+    type: Number,
+    require: true
+  },
   username: {
-      type: String,
-      require: true
-      },
+    type: String,
+    require: true
+  },
   password: {
-      type: String,
-      require: true
-      },
+    type: String,
+    require: true
+  },
   lastVisit: {
-      type: Date,
-      require: true
-      },
+    type: Date,
+    require: true
+  },
   decks:
-        deckSchema
+    deckSchema
 });
-     
+
 const Users = mongoose.model('Users', userSchema);
 const Decks = mongoose.model('Decks', deckSchema);
 const Cards = mongoose.model('Cards', cardSchema);
 
-module.exports = {Users, Decks, Cards};
+module.exports = { Users, Decks, Cards };
